@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{%block title%}
+{{new.title}}
+{%endblock%}
+
+{%block sidebar%}
+{%include 'inc/_sidebar.html'%}
+{%endblock%}
+
+
+{%block content%}
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{new.category.get_absolute_url}}">{{new.category.title}}</a>
+    </div>
+    <div class="card-body">
+        {%if new.photo%}
+        <img src="{{ new.photo.url }}" alt="" , width="350" , class="float-left mr-3">
+        {%else%}
+        <img src="https://memepedia.ru/wp-content/uploads/2017/06/%D0%BA%D0%B8%D0%B2%D0%B8-%D1%81-%D1%80%D1%83%D0%BA%D0%B0%D0%BC%D0%B8-%D0%BC%D0%B5%D0%BC.jpg"
+             alt="" , width="350" , class="float-left mr-3">
+        {%endif%}
+        <h5 class="card-title">{{new.title}}</h5>
+        <p class="card-text">{{new.content|linebreaks}}</p>
+    </div>
+    <div class="card-footer text-muted">
+        {{new.created_at|date:"Y-m-d H:i"}}
+    </div>
+</div>
+{%endblock%}
